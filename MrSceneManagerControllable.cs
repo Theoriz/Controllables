@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MrSceneManagerControllable : Controllable {
 
-    public MrSceneManager manager;
-
     public List<string> scenesName;
     [OSCProperty(TargetList = "scenesName", IncludeInPresets = false)] public string activeScene;
 
@@ -16,19 +14,15 @@ public class MrSceneManagerControllable : Controllable {
     [OSCProperty]
     public float AutoSwitchTimer;
 
-    public override void Awake()
-    {
-        manager = FindObjectOfType<MrSceneManager>();
-        if(manager == null)
-        {
-            Debug.LogWarning("Couldn't find a " + this.GetType().Name + " script !");
-            return;
-        }
-        TargetScript = manager;
-        base.Awake();
-    }
+    private MrSceneManager manager;
 
-    public override void OnScriptValueChanged(string name)
+	public override void Awake() {
+		base.Awake();
+
+        manager = TargetScript as MrSceneManager;
+	}
+
+	public override void OnScriptValueChanged(string name)
     {
         base.OnScriptValueChanged(name);
         scenesName = manager.scenesName;
