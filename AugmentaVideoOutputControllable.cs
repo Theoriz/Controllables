@@ -13,4 +13,8 @@ public class AugmentaVideoOutputControllable : Controllable
     [OSCProperty] public Vector2Int videoOutputSizeInPixels;
     [OSCProperty] public Vector2 videoOutputSizeInMeters;
     [OSCProperty] public Vector2 videoOutputOffset;
+
+    [OSCProperty] public bool showFusionSpout;
+    [OSCProperty] public bool autoFindFusionSpout;
+    [OSCProperty] public string fusionSpoutName;
 }
